@@ -22,8 +22,11 @@ RUN wget -q -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsea
  && ln -s $(which node) kibana/node/bin/node \
  && ln -s $(which npm) kibana/node/bin/npm
 
+USER root
 RUN chgrp -R 0 /home/elasticsearch/elasticsearch/config && chmod -R g+rwX /home/elasticsearch/elasticsearch/config
 RUN chgrp -R 0 /home/elasticsearch/kibana/optimize && chmod -R g+rwX /home/elasticsearch/kibana/optimize
+
+USER elasticsearch
 
 CMD sh elasticsearch/bin/elasticsearch -E http.host=0.0.0.0 --quiet & kibana/bin/kibana --host 0.0.0.0 -Q
 
