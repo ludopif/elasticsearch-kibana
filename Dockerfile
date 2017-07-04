@@ -25,6 +25,7 @@ RUN wget -q -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsea
 USER root
 RUN chgrp -R 0 /home/elasticsearch/elasticsearch/config && chmod -R g+rwX /home/elasticsearch/elasticsearch/config
 RUN chgrp -R 0 /home/elasticsearch/kibana/optimize && chmod -R g+rwX /home/elasticsearch/kibana/optimize
+RUN chgrp -R 0 /home/elasticsearch/kibana/data && chmod -R g+rwX /home/elasticsearch/kibana/data
 
 USER elasticsearch
 
